@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ScrollView } from "react-native";
+import { router } from "expo-router";
 
 export default function WelcomeScreen() {
   return (
@@ -43,7 +44,7 @@ export default function WelcomeScreen() {
       <View style={styles.buttonArea}>
 
         <Text style={styles.logandcadText}>Faça login ou cadastre-se:</Text>
-        <TouchableOpacity style={{ marginRight: 10 }}>
+        <TouchableOpacity onPress={() => router.push("/login")}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
@@ -150,12 +151,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 20,
   },
-  
+
   imagecarousel: {
-  width: 350,
-  height: 180,
-  borderRadius: 15,
-  marginTop: 20,
-  marginBottom: 30,
-},
+    width: 350,
+    height: 180,
+    borderRadius: 15,
+    marginTop: 20,
+    marginBottom: 30,
+  },
 });
