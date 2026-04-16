@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    Image,
-} from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
+import { router } from "expo-router";
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './types/navigation';
 
-export default function LoginScreen() {
+type Props = NativeStackScreenProps<RootStackParamList, 'login'>;
 
-    const [email, setEmail] = useState("");
+export default function LoginScreen({ navigation }: Props) {
+
+    const [username, setUser] = useState("");
     const [senha, setSenha] = useState("");
 
     const handleLogin = () => {
-        if (email.includes("@") && senha.length > 6) {
-            console.log("✅ Acesso autorizado para:", email);
-        } else {
+        if (username.length > 2 && senha.length > 6) {
+            console.log("✅ Acesso autorizado para:", username);
+
+            router.push({
+                pathname: "/dashboard",
+                params: {
+                    userName: username,
+                    voluntarioId: Math.random().toString(36).substr(2, 9).toUpperCase()
+                }
+            });
+        } 
+        
+        else {
             console.log("❌ Falha no login: Verifique os critérios de validação");
         }
 
-        console.table({ email, senha });
+        console.table({ username, senha });
     };
 
     return (
@@ -38,13 +46,13 @@ export default function LoginScreen() {
                 <Text style={styles.title}>Faça Login!</Text>
 
                 <TextInput
-                    placeholder="Digite seu e-mail"
+                    placeholder="Digite seu username"
                     placeholderTextColor="#666"
                     style={styles.input}
                     keyboardType="email-address"
                     autoCapitalize="none"
-                    value={email}
-                    onChangeText={setEmail}
+                    value={username}
+                    onChangeText={setUser}
                 />
 
                 <TextInput
@@ -55,12 +63,6 @@ export default function LoginScreen() {
                     value={senha}
                     onChangeText={setSenha}
                 />
-
-                {email.length > 0 && (
-                    <Text style={styles.helperText}>
-                        Logando como: {email}
-                    </Text>
-                )}
 
             </View>
 
