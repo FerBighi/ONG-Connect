@@ -20,7 +20,7 @@ export default function DashboardScreen() {
             <View style={styles.header}>
 
                 <Text style={styles.welcome}>
-                    👋 Olá, Voluntário!
+                    Olá, Voluntário!
                 </Text>
 
                 <Text style={styles.subtitle}>
@@ -52,7 +52,7 @@ export default function DashboardScreen() {
             <View style={styles.cardLarge}>
 
                 <Text style={styles.cardTitle}>
-                    🌎 Projetos sociais
+                    Projetos sociais
                 </Text>
 
                 <Text style={styles.cardDescription}>
