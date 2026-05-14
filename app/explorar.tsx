@@ -28,7 +28,8 @@ export default function ExplorarScreen() {
                     causa: "Recreação em hospitais",
                     descricao:
                         "Levando alegria e esperança para crianças em tratamento hospitalar.",
-
+                    descricaoDetalhada:
+                        "A ONG leva atividades recreativas, pintura e apoio emocional para crianças hospitalizadas.",
                     imagem: require("../assets/images/ong1.jpg"),
                 },
 
@@ -38,7 +39,8 @@ export default function ExplorarScreen() {
                     causa: "Ajuda humanitária",
                     descricao:
                         "Distribuímos alimentos, roupas e apoio para famílias em vulnerabilidade.",
-
+                    descricaoDetalhada:
+                        "A ONG realiza campanhas solidárias, arrecadações e distribuição de alimentos, roupas e produtos essenciais para famílias em situação de vulnerabilidade social.",
                     imagem: require("../assets/images/ong2.jpg"),
                 },
 
@@ -48,7 +50,8 @@ export default function ExplorarScreen() {
                     causa: "Combate à fome",
                     descricao:
                         "Acreditamos que nenhuma família deveria passar fome.",
-
+                    descricaoDetalhada:
+                        "O projeto combate a insegurança alimentar através da entrega de cestas básicas, refeições comunitárias e ações de apoio para pessoas em necessidade.",
                     imagem: require("../assets/images/ong3.jpg"),
                 },
 

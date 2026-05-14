@@ -1,49 +1,72 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
+
+import {
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    Image,
+} from "react-native";
+
 import { router } from "expo-router";
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from './types/navigation';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'login'>;
-
-export default function LoginScreen({ navigation }: Props) {
+export default function LoginScreen() {
 
     const [username, setUser] = useState("");
     const [senha, setSenha] = useState("");
 
     const handleLogin = () => {
-        if (username.length > 2 && senha.length > 6) {
+
+        if (username.trim() !== "" && senha.trim() !== "") {
+
             console.log("✅ Acesso autorizado para:", username);
 
             router.push({
                 pathname: "/tabs",
+
                 params: {
                     userName: username,
-                    voluntarioId: Math.random().toString(36).substr(2, 9).toUpperCase()
+
+                    voluntarioId:
+                        Math.random()
+                            .toString(36)
+                            .substr(2, 9)
+                            .toUpperCase()
                 }
             });
-        } 
-        
+
+        }
+
         else {
-            console.log("❌ Falha no login: Verifique os critérios de validação");
+
+            alert("Preencha todos os campos!");
+
+            console.log("❌ Falha no login");
+
         }
 
         console.table({ username, senha });
     };
 
     return (
+
         <View style={styles.container}>
 
             {/* LOGO */}
+
             <Image
                 source={require("../assets/images/logo.png")}
                 style={styles.logo}
             />
 
             {/* FORMULÁRIO */}
+
             <View style={styles.form}>
 
-                <Text style={styles.title}>Faça Login!</Text>
+                <Text style={styles.title}>
+                    Faça Login!
+                </Text>
 
                 <TextInput
                     placeholder="Digite seu username"
@@ -67,10 +90,20 @@ export default function LoginScreen({ navigation }: Props) {
             </View>
 
             {/* BOTÃO */}
+
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                    <Text style={styles.buttonText}>Entrar</Text>
+
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={handleLogin}
+                >
+
+                    <Text style={styles.buttonText}>
+                        Entrar
+                    </Text>
+
                 </TouchableOpacity>
+
             </View>
 
         </View>
@@ -82,7 +115,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#ffffff",
-        justifyContent: "center", // centraliza tudo
+        justifyContent: "center",
         alignItems: "center",
         padding: 20,
     },
@@ -90,13 +123,13 @@ const styles = StyleSheet.create({
     logo: {
         width: 110,
         height: 110,
-        marginBottom: 20, // em vez de marginTop gigante
+        marginBottom: 20,
     },
 
     form: {
         width: "100%",
         alignItems: "center",
-        marginBottom: 25, // controla o espaço abaixo
+        marginBottom: 25,
     },
 
     title: {
@@ -113,12 +146,6 @@ const styles = StyleSheet.create({
         padding: 15,
         marginBottom: 15,
         elevation: 2,
-    },
-
-    helperText: {
-        color: "#1e73be",
-        fontSize: 14,
-        marginTop: 5,
     },
 
     footer: {

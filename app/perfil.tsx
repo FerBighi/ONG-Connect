@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     View,
@@ -7,11 +7,14 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
+    Modal,
 } from "react-native";
 
 export default function PerfilScreen({ route }: any) {
 
     const { userName, voluntarioId } = route.params;
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     return (
 
@@ -35,7 +38,7 @@ export default function PerfilScreen({ route }: any) {
                 </Text>
 
                 <Text style={styles.bio}>
-                    do my best 
+                    do my best
                 </Text>
 
             </View>
@@ -82,7 +85,7 @@ export default function PerfilScreen({ route }: any) {
 
             </View>
 
-            {/* CARD PRINCIPAL */}
+            {/* CARD */}
 
             <View style={styles.mainCard}>
 
@@ -98,15 +101,75 @@ export default function PerfilScreen({ route }: any) {
 
             </View>
 
-            {/* BOTÃO */}
+            {/* BOTÃO INTERESSES */}
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+                style={styles.interestButton}
+                onPress={() => setModalVisible(true)}
+            >
 
-                <Text style={styles.buttonText}>
-                    Editar Perfil
+                <Text style={styles.interestText}>
+                    Editar Interesses
                 </Text>
 
             </TouchableOpacity>
+
+            {/* MODAL */}
+
+            <Modal
+                transparent={true}
+                visible={modalVisible}
+                animationType="fade"
+            >
+
+                <View style={styles.modalOverlay}>
+
+                    <View style={styles.modalContainer}>
+
+                        <Text style={styles.modalTitle}>
+                            Escolha suas causas 💙
+                        </Text>
+
+                        <TouchableOpacity style={styles.optionButton}>
+
+                            <Text style={styles.optionText}>
+                                Educação 📚
+                            </Text>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.optionButton}>
+
+                            <Text style={styles.optionText}>
+                                Meio Ambiente 🌱
+                            </Text>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.optionButton}>
+
+                            <Text style={styles.optionText}>
+                                Saúde ❤️
+                            </Text>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={styles.closeButton}
+                            onPress={() => setModalVisible(false)}
+                        >
+
+                            <Text style={styles.closeText}>
+                                Fechar
+                            </Text>
+
+                        </TouchableOpacity>
+
+                    </View>
+
+                </View>
+
+            </Modal>
 
         </ScrollView>
     );
@@ -121,12 +184,9 @@ const styles = StyleSheet.create({
 
     header: {
         backgroundColor: "#1e73be",
-
         alignItems: "center",
-
         paddingTop: 70,
         paddingBottom: 40,
-
         borderBottomLeftRadius: 30,
         borderBottomRightRadius: 30,
     },
@@ -134,12 +194,9 @@ const styles = StyleSheet.create({
     profileImage: {
         width: 120,
         height: 120,
-
         borderRadius: 60,
-
         borderWidth: 4,
         borderColor: "#fff",
-
         marginBottom: 15,
     },
 
@@ -158,35 +215,25 @@ const styles = StyleSheet.create({
     bio: {
         fontSize: 15,
         color: "#fff",
-
         textAlign: "center",
-
         marginTop: 15,
         paddingHorizontal: 35,
-
         lineHeight: 22,
     },
 
     statsContainer: {
         flexDirection: "row",
-
         justifyContent: "space-between",
-
         marginHorizontal: 20,
         marginTop: -30,
     },
 
     statCard: {
         backgroundColor: "#fff",
-
         width: "31%",
-
         borderRadius: 20,
-
         paddingVertical: 22,
-
         alignItems: "center",
-
         elevation: 5,
     },
 
@@ -204,13 +251,9 @@ const styles = StyleSheet.create({
 
     mainCard: {
         backgroundColor: "#fff",
-
         margin: 20,
-
         borderRadius: 24,
-
         padding: 25,
-
         elevation: 4,
     },
 
@@ -218,35 +261,97 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: "bold",
         color: "#1e73be",
-
         marginBottom: 12,
     },
 
     cardText: {
         fontSize: 15,
         color: "#444",
-
         lineHeight: 24,
     },
 
     button: {
         backgroundColor: "#1e73be",
-
         marginHorizontal: 20,
         marginBottom: 40,
-
         paddingVertical: 18,
-
         borderRadius: 30,
-
         alignItems: "center",
-
         elevation: 4,
     },
 
     buttonText: {
         color: "#fff",
         fontSize: 17,
+        fontWeight: "bold",
+    },
+
+    interestButton: {
+        backgroundColor: "#fff",
+        marginHorizontal: 20,
+        marginBottom: 50,
+        paddingVertical: 18,
+        borderRadius: 30,
+        alignItems: "center",
+        elevation: 4,
+        borderWidth: 1,
+        borderColor: "#1e73be",
+    },
+
+    interestText: {
+        color: "#1e73be",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: "rgba(0,0,0,0.4)",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    modalContainer: {
+        backgroundColor: "#fff",
+        width: "85%",
+        borderRadius: 25,
+        padding: 25,
+        elevation: 10,
+    },
+
+    modalTitle: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: "#1e73be",
+        textAlign: "center",
+        marginBottom: 25,
+    },
+
+    optionButton: {
+        backgroundColor: "#e3f2fd",
+        paddingVertical: 16,
+        borderRadius: 18,
+        marginBottom: 15,
+        alignItems: "center",
+    },
+
+    optionText: {
+        color: "#1e73be",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+
+    closeButton: {
+        backgroundColor: "#1e73be",
+        paddingVertical: 16,
+        borderRadius: 18,
+        marginTop: 10,
+        alignItems: "center",
+    },
+
+    closeText: {
+        color: "#fff",
+        fontSize: 16,
         fontWeight: "bold",
     },
 
