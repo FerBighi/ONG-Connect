@@ -16,7 +16,7 @@ export default function LoginScreen({ navigation }: Props) {
             console.log("✅ Acesso autorizado para:", username);
 
             router.push({
-                pathname: "/dashboard",
+                pathname: "/tabs",
                 params: {
                     userName: username,
                     voluntarioId: Math.random().toString(36).substr(2, 9).toUpperCase()
