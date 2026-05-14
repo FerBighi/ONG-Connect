@@ -35,8 +35,7 @@ export default function PerfilScreen({ route }: any) {
                 </Text>
 
                 <Text style={styles.bio}>
-                    Apaixonado por transformar vidas através
-                    do voluntariado
+                    do my best 
                 </Text>
 
             </View>
