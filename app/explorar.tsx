@@ -26,6 +26,9 @@ export default function ExplorarScreen() {
                     id: "1",
                     nome: "Sorrisos que Curam",
                     causa: "Recreação em hospitais",
+                    descricao:
+                        "Levando alegria e esperança para crianças em tratamento hospitalar.",
+
                     imagem: require("../assets/images/ong1.jpg"),
                 },
 
@@ -33,6 +36,9 @@ export default function ExplorarScreen() {
                     id: "2",
                     nome: "Mãos Solidárias",
                     causa: "Ajuda humanitária",
+                    descricao:
+                        "Distribuímos alimentos, roupas e apoio para famílias em vulnerabilidade.",
+
                     imagem: require("../assets/images/ong2.jpg"),
                 },
 
@@ -40,6 +46,9 @@ export default function ExplorarScreen() {
                     id: "3",
                     nome: "Rede do Bem",
                     causa: "Combate à fome",
+                    descricao:
+                        "Acreditamos que nenhuma família deveria passar fome.",
+
                     imagem: require("../assets/images/ong3.jpg"),
                 },
 
@@ -77,7 +86,7 @@ export default function ExplorarScreen() {
         <View style={styles.container}>
 
             <Text style={styles.title}>
-                Explore ONGs 
+                Explore ONGs
             </Text>
 
             <FlatList

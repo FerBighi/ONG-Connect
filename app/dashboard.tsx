@@ -1,79 +1,166 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useLocalSearchParams, router } from "expo-router";
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from './types/navigation';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'dashboard'>;
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    TouchableOpacity,
+    ScrollView,
+} from "react-native";
 
 export default function DashboardScreen() {
-    // Reatividade: Recuperando parâmetros via hook do Expo Router
-    const { userName, voluntarioId } = useLocalSearchParams<{ userName: string, voluntarioId: string }>();
-
-    const handleLogout = () => {
-        // Pensamento Crítico: navigation.reset (No Expo Router usamos replace para limpar a pilha)
-        router.replace("/login");
-    };
 
     return (
-        <View style={styles.container}>
-            <View style={styles.card}>
-                <Text style={styles.welcomeText}>
-                    Olá <Text style={styles.highlight}>{userName}</Text>, seja bem-vindo a ONG CONNECT!
+
+        <ScrollView style={styles.container}>
+
+            {/* HEADER */}
+
+            <View style={styles.header}>
+
+                <Text style={styles.welcome}>
+                    👋 Olá, Voluntário!
                 </Text>
-                <Text style={styles.idText}>ID do Voluntário: {voluntarioId}</Text>
+
+                <Text style={styles.subtitle}>
+                    Obrigado por ajudar a transformar vidas
+                </Text>
+
             </View>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                <Text style={styles.logoutText}>Sair</Text>
+            {/* CARDS */}
+
+            <View style={styles.cardsContainer}>
+
+                <View style={styles.card}>
+                    <Text style={styles.cardNumber}>24</Text>
+                    <Text style={styles.cardText}>
+                        ONGs disponíveis
+                    </Text>
+                </View>
+
+                <View style={styles.card}>
+                    <Text style={styles.cardNumber}>120+</Text>
+                    <Text style={styles.cardText}>
+                        Voluntários ativos
+                    </Text>
+                </View>
+
+            </View>
+
+            <View style={styles.cardLarge}>
+
+                <Text style={styles.cardTitle}>
+                    🌎 Projetos sociais
+                </Text>
+
+                <Text style={styles.cardDescription}>
+                    Encontre ações solidárias perto de você
+                    e participe de causas importantes.
+                </Text>
+
+            </View>
+
+            {/* BOTÃO */}
+
+            <TouchableOpacity style={styles.button}>
+
+                <Text style={styles.buttonText}>
+                    Explorar Projetos
+                </Text>
+
             </TouchableOpacity>
-        </View>
+
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
+
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20
+        backgroundColor: "#f2f7fc",
+        padding: 20,
+    },
+
+    header: {
+        marginTop: 40,
+        marginBottom: 25,
+    },
+
+    welcome: {
+        fontSize: 30,
+        fontWeight: "bold",
+        color: "#1e73be",
+    },
+
+    subtitle: {
+        fontSize: 16,
+        color: "#666",
+        marginTop: 8,
+    },
+
+    cardsContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 20,
     },
 
     card: {
-        backgroundColor: "#e3f2fd",
-        padding: 30, 
-        borderRadius: 20, 
-        width: "100%", 
-        alignItems: "center", 
-        elevation: 4
+        backgroundColor: "#fff",
+        width: "48%",
+        padding: 20,
+        borderRadius: 18,
+        elevation: 4,
+        alignItems: "center",
     },
 
-    welcomeText: { 
-        fontSize: 18, 
-        textAlign: "center" 
+    cardNumber: {
+        fontSize: 28,
+        fontWeight: "bold",
+        color: "#1e73be",
     },
 
-    highlight: { 
-        fontWeight: "bold", 
-        color: "#1e73be" 
+    cardText: {
+        fontSize: 14,
+        color: "#666",
+        textAlign: "center",
+        marginTop: 8,
     },
 
-    idText: { 
-        marginTop: 10, 
-        color: "#999" 
-    },
-
-    logoutButton: { 
-        marginTop: 40,
+    cardLarge: {
         backgroundColor: "#1e73be",
-        borderRadius: 25,
-        paddingVertical: 12,
-        paddingHorizontal: 30
+        borderRadius: 20,
+        padding: 25,
+        marginBottom: 25,
     },
 
-    logoutText: { 
-        color: "#fff", 
-        fontWeight: "bold" 
-    }
+    cardTitle: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: "#fff",
+        marginBottom: 10,
+    },
+
+    cardDescription: {
+        fontSize: 15,
+        color: "#e3f2fd",
+        lineHeight: 22,
+    },
+
+    button: {
+        backgroundColor: "#1e73be",
+        paddingVertical: 18,
+        borderRadius: 30,
+        alignItems: "center",
+        marginBottom: 40,
+    },
+
+    buttonText: {
+        color: "#fff",
+        fontSize: 17,
+        fontWeight: "bold",
+    },
+
 });
